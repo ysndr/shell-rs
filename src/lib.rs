@@ -5,7 +5,7 @@ extern crate libc;
 extern crate error_chain;
 
 pub mod shell;
-
+pub use shell::*;
 
 #[cfg(test)]
 mod tests {

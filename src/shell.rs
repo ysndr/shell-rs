@@ -5,17 +5,17 @@ use atty;
 use termcolor::Color::{Cyan, Green, Red, Yellow};
 use termcolor::{self, Color, ColorSpec, StandardStream, WriteColor};
 
-error_chain! {
+pub mod errors {
+    error_chain! {
 
-    errors {    }
+        errors {    }
 
-    foreign_links {
-        Io(::std::io::Error);
+        foreign_links {
+            Io(::std::io::Error);
+        }
     }
-
 }
-
-
+use ::errors::*;
 
 /// The requested verbosity of output
 #[derive(Debug, Clone, Copy, PartialEq)]
