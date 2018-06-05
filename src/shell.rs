@@ -15,7 +15,7 @@ pub mod errors {
         }
     }
 }
-use ::errors::*;
+use errors::*;
 
 /// The requested verbosity of output
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -38,10 +38,12 @@ pub struct Shell {
 impl fmt::Debug for Shell {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self.err {
-            ShellOut::Write(_) => f.debug_struct("Shell")
+            ShellOut::Write(_) => f
+                .debug_struct("Shell")
                 .field("verbosity", &self.verbosity)
                 .finish(),
-            ShellOut::Stream { color_choice, .. } => f.debug_struct("Shell")
+            ShellOut::Stream { color_choice, .. } => f
+                .debug_struct("Shell")
                 .field("verbosity", &self.verbosity)
                 .field("color_choice", &color_choice)
                 .finish(),
@@ -147,12 +149,7 @@ impl Shell {
     }
 
     /// Shortcut to right-align a status message.
-    pub fn status_with_color<T, U>(
-        &mut self,
-        status: T,
-        message: U,
-        color: Color,
-    ) -> Result<()>
+    pub fn status_with_color<T, U>(&mut self, status: T, message: U, color: Color) -> Result<()>
     where
         T: fmt::Display,
         U: fmt::Display,
@@ -347,10 +344,10 @@ mod imp {
 mod imp {
     extern crate winapi;
 
-    use std::mem;
     use self::winapi::um::processenv::*;
     use self::winapi::um::winbase::*;
     use self::winapi::um::wincon::*;
+    use std::mem;
 
     pub fn stderr_width() -> Option<usize> {
         unsafe {
