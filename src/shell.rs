@@ -5,16 +5,12 @@ use atty;
 use termcolor::Color::{Cyan, Green, Red, Yellow};
 use termcolor::{self, Color, ColorSpec, StandardStream, WriteColor};
 
-use util::errors::Result;
-
-
 error_chain! {
 
     errors {    }
 
     foreign_links {
         Io(::std::io::Error);
-        SerdeYaml(::serde_yaml::Error)
     }
 
 }

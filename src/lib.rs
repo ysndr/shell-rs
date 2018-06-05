@@ -1,7 +1,16 @@
+extern crate atty;
+extern crate termcolor;
+extern crate libc;
+#[macro_use]
+extern crate error_chain;
+
+pub mod shell;
+
+
 #[cfg(test)]
 mod tests {
     #[test]
     fn it_works() {
-        assert_eq!(2 + 2, 4);
+        ::shell::Shell::new();
     }
 }
