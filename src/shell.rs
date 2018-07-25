@@ -192,6 +192,14 @@ impl Shell {
         }
     }
 
+    /// Print an amber 'warning' message
+    pub fn info<T: fmt::Display>(&mut self, message: T) -> Result<()> {
+        match self.verbosity {
+            Verbosity::Quiet => Ok(()),
+            _ => self.print(&"info:", Some(&message), Green, false),
+        }
+    }
+
     /// Update the verbosity of the shell
     pub fn set_verbosity(&mut self, verbosity: Verbosity) {
         self.verbosity = verbosity;
